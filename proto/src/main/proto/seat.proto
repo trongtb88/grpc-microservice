@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package com.dragon88.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.dragon88.gen.proto";
+
+service SeatController {
+  rpc Reserve(SeatList) returns (ReserveSeatResponse) {}
+  rpc Get(NumberOfSeats) returns (SeatList) {}
+}
+
+message NumberOfSeats {
+  int32 total = 1;
+}
+
+message ReserveSeatResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message SeatList {
+  repeated Seat seats = 1;
+}
+
+message Seat {
+  int32 row = 1;
+  int32 column = 2;
+  string status = 3;
+}
