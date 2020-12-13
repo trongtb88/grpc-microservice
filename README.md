@@ -3,6 +3,8 @@ How to run it at localhost
 
 1. cd kafkaserver folder, run docker-compose up to run kafka to dev
 2. Use kafka tool or command to create topic (veftopic) in config file (userservice)
+Có thể download kafka tool UI ở đây về thao tác cho tiện nhé 
+https://www.kafkatool.com/
 3. go to root folder, run mvn install package -Dmaven.test.skip=true  
 4. go to properties file to change properties email username,password of notification service
 5. run eurekaservice -> seatservice -> userservice -> notification service
