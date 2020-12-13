@@ -7,14 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eurekaserver" />
         <module name="userservice" />
+        <module name="notificationservice" />
         <module name="seatservice" />
         <module name="proto" />
+        <module name="eurekaserver" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="dea" target="1.8" />
+      <module name="demo (1) (com.thanh)" target="1.8" />
+      <module name="demo (2) (com.dragon88)" target="1.8" />
       <module name="eurekaserver" target="1.8" />
+      <module name="notificationservice" target="1.8" />
       <module name="proto" target="1.8" />
       <module name="seat-service" target="1.8" />
       <module name="seatservice" target="1.8" />
@@ -23,7 +28,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo (1) (com.thanh)" options="-parameters" />
+      <module name="demo (2) (com.dragon88)" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
       <module name="proto" options="-parameters" />
       <module name="seat-service" options="-parameters" />
       <module name="seatservice" options="-parameters" />

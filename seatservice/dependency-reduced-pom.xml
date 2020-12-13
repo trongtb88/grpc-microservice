@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <version>2.1.0.RELEASE</version>
-    <relativePath>pom.xml</relativePath>
+    <artifactId>dea</artifactId>
+    <groupId>com.dragon88.dea</groupId>
+    <version>${revision}</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.dragon88</groupId>
   <artifactId>seatservice</artifactId>
   <name>seatservice</name>
-  <version>0.0.1-SNAPSHOT</version>
-  <description>Demo project for Spring Boot</description>
+  <description>DEA seatservice</description>
   <build>
     <extensions>
       <extension>
@@ -44,22 +41,45 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
       <version>2.1.0.RELEASE</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>io.github.lognet</groupId>
-      <artifactId>grpc-spring-boot-starter</artifactId>
-      <version>3.0.0</version>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <version>2.1.4.RELEASE</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-configuration-processor</artifactId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
       <version>2.1.0.RELEASE</version>
       <scope>provided</scope>
-      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.13</version>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>protobuf-java</artifactId>
+          <groupId>com.google.protobuf</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.16</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>2.1.0.RELEASE</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -118,40 +138,17 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <version>2.1.0.RELEASE</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-      <version>2.1.4.RELEASE</version>
+      <groupId>io.github.lognet</groupId>
+      <artifactId>grpc-spring-boot-starter</artifactId>
+      <version>3.0.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
       <version>2.1.0.RELEASE</version>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.13</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>protobuf-java</artifactId>
-          <groupId>com.google.protobuf</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.16</version>
-      <scope>provided</scope>
+      <optional>true</optional>
     </dependency>
   </dependencies>
   <dependencyManagement>
@@ -165,14 +162,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <properties>
-    <java.version>1.8</java.version>
-    <grpc-spring-boot-starter.version>3.0.0</grpc-spring-boot-starter.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <os-maven-plugin.version>1.6.1</os-maven-plugin.version>
-    <spring-cloud.version>Greenwich.SR4</spring-cloud.version>
-  </properties>
 </project>
 

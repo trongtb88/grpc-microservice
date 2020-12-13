@@ -4,11 +4,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/spring-grpc-demo/pom.xml" />
-        <option value="$PROJECT_DIR$/eurekaserver/pom.xml" />
-        <option value="$PROJECT_DIR$/userservice/pom.xml" />
         <option value="$PROJECT_DIR$/proto/pom.xml" />
         <option value="$PROJECT_DIR$/seat-service/pom.xml" />
         <option value="$PROJECT_DIR$/seatservice/pom.xml" />
+        <option value="$PROJECT_DIR$/eurekaserver/pom.xml" />
+        <option value="$PROJECT_DIR$/userservice/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/notificationservice/pom.xml" />
       </list>
     </option>
   </component>
