@@ -1,9 +1,8 @@
 package com.dragon88.userservice.service;
 
-import com.dragon88.gen.proto.ReserveSeatResponse;
-import com.dragon88.gen.proto.Seat;
-import com.dragon88.gen.proto.SeatControllerGrpc;
-import com.dragon88.gen.proto.SeatList;
+import com.dragon88.gen.proto.*;
+import com.dragon88.userservice.dao.User;
+import com.dragon88.userservice.repository.UserRepository;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.dragon88.userservice.dto.SeatDTO;
@@ -32,11 +31,14 @@ public class UserService {
 
     @Autowired
     private ProducerService producerService;
+    @Autowired
+    private UserRepository userRepository;
 
 
     public ReserveSeatResponse reserve(UserReserve userReserve) {
+        LOGGER.info("reserve: {}", userReserve);
+        saveOrUpdateUser(userReserve);
         final InstanceInfo instanceInfo = client.getNextServerFromEureka("seat-service", false);
-
         final ManagedChannel channel = ManagedChannelBuilder.forAddress(instanceInfo.getIPAddr(), instanceInfo.getPort())
                 .usePlaintext()
                 .build();
@@ -44,16 +46,29 @@ public class UserService {
         List<SeatDTO> seatDTOS = userReserve.getSeats();
         List<Seat> seats = new ArrayList<>();
         for (SeatDTO seatDTO : seatDTOS) {
-            seats.add(Seat.newBuilder().setColumn(seatDTO.getRows()).setColumn(seatDTO.getCols()).build());
+            seats.add(Seat.newBuilder().setRow(seatDTO.getRows()).setColumn(seatDTO.getCols()).build());
         }
         SeatList addAllSeats = SeatList.newBuilder().addAllSeats(seats).build();
         ReserveSeatResponse reserveSeatResponse = stub.reserve(addAllSeats);
-        //send userReserve object via kafka
-        LOGGER.info("Sending to notification kafka");
-        userReserve.setBookedResponse(reserveSeatResponse.getMessage());
-        producerService.sendUserReserveMessage(userReserve);
-        LOGGER.info("Finished sent to notification kafka");
         channel.shutdown();
+        sendObjectReserveViaKafka(userReserve, reserveSeatResponse);
         return reserveSeatResponse;
+    }
+
+    private void sendObjectReserveViaKafka(UserReserve userReserve, ReserveSeatResponse reserveSeatResponse) {
+        if (StatusCode.OK.equals(reserveSeatResponse.getStatusCode())) {
+            LOGGER.info("Sending to notification kafka");
+            userReserve.setBookedResponse(reserveSeatResponse.getMessage());
+            producerService.sendUserReserveMessage(userReserve);
+            LOGGER.info("Finished sent to notification kafka");
+        }
+    }
+
+    private void saveOrUpdateUser(UserReserve userReserve) {
+        User user = new User();
+        user.setId(userReserve.getId().longValue());
+        user.setName(userReserve.getName());
+        user.setEmail(userReserve.getEmail());
+        userRepository.save(user);
     }
 }

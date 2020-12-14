@@ -42,7 +42,6 @@ public class ProducerService {
     public void sendUserReserveMessage(UserReserve userReserve) {
         ListenableFuture<SendResult<String, UserReserve>> future = userReserveKafkaTemplate.send(topicName, userReserve);
         future.addCallback(new ListenableFutureCallback<SendResult<String, UserReserve>>() {
-
             @Override
             public void onSuccess(SendResult<String, UserReserve> result) {
                 System.out.println("Sent message=[" + userReserve.toString() + "] with offset=[" + result.getRecordMetadata()

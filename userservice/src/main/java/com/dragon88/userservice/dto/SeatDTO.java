@@ -1,17 +1,19 @@
 package com.dragon88.userservice.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class SeatDTO {
     int rows;
     int cols;
     String status;
 
-    public SeatDTO() {
-
+    @Override
+    public String toString() {
+        return "SeatDTO{" +
+            "rows=" + rows +
+            ", cols=" + cols +
+            ", status='" + status + '\'' +
+            '}';
     }
 }

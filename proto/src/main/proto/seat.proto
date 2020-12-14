@@ -17,6 +17,12 @@ message NumberOfSeats {
 message ReserveSeatResponse {
   bool success = 1;
   string message = 2;
+  StatusCode statusCode = 3;
+}
+
+enum StatusCode {
+  OK = 0;
+  KO = 1;
 }
 
 message SeatList {

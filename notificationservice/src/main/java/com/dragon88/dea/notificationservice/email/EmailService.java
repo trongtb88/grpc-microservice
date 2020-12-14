@@ -22,7 +22,7 @@ public class EmailService {
         message.setFrom("trongtb1988@gmail.com");
         message.setTo(userReserve.getEmail());
         message.setSubject("Email from VEF DEA");
-        message.setText("User " + userReserve.getName() + " book seats " + userReserve.getSeats() + " result {} " + userReserve.getBookedResponse()) ;
+        message.setText("User " + userReserve.getName() + " book seats " + userReserve.getSeats() + ", responseMessage=" + userReserve.getBookedResponse()) ;
         emailConfig.getJavaMailSender().send(message);
     }
 }

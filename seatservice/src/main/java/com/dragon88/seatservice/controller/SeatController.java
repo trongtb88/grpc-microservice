@@ -32,8 +32,11 @@ public class SeatController extends SeatControllerGrpc.SeatControllerImplBase {
 		LOGGER.info("reserve received {}", request);
 
 		if (!seatService.validateSeatListBoundaries(request.getSeatsList())) {
-			ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder().setSuccess(false)
-					.setMessage("can't reserve seats").build();
+			ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder()
+					.setSuccess(false)
+					.setStatusCode(StatusCode.KO)
+					.setMessage("can't reserve seats")
+					.build();
 			LOGGER.info("server responded failed validation {}", reserveSeatReply);
 			responseObserver.onNext(reserveSeatReply);
 			responseObserver.onCompleted();
@@ -45,16 +48,22 @@ public class SeatController extends SeatControllerGrpc.SeatControllerImplBase {
 		}
 
 		if (seatService.reserve(request.getSeatsList())) {
-			ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder().setSuccess(true)
-					.setMessage("reserve seats successfuly").build();
+			ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder()
+					.setSuccess(true)
+					.setStatusCode(StatusCode.OK)
+					.setMessage("reserve seats successfuly")
+					.build();
 			LOGGER.info("server responded {}", reserveSeatReply);
 			responseObserver.onNext(reserveSeatReply);
 			responseObserver.onCompleted();
 			return;
 		}
 		
-		ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder().setSuccess(false)
-				.setMessage("reserve seats failed").build();
+		ReserveSeatResponse reserveSeatReply = ReserveSeatResponse.newBuilder()
+				.setSuccess(false)
+				.setStatusCode(StatusCode.KO)
+				.setMessage("reserve seats failed")
+				.build();
 		LOGGER.info("server responded {}", reserveSeatReply);
 		responseObserver.onNext(reserveSeatReply);
 		responseObserver.onCompleted();
