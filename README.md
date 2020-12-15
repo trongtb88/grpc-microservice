@@ -35,7 +35,7 @@ First you need install Docker deamon, Docker compose and SET bash to run from te
 
 Git clone to your local machine
 ```sh
-$ git clone https://github.com/trongtb88/springboot-grpc-docker.git
+$ git clone https://github.com/trongtb88/grpc-microservice.git
 ```
 Build and docker all images : 
 - Check all application.properties file for each service, need comment and uncomment like that 
