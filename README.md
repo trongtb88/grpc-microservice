@@ -1,4 +1,4 @@
-# grpc-microservice
+## grpc-microservice
 How to run it at localhost
 
 1. cd kafkaserver folder, run docker-compose up to run kafka to dev
@@ -27,7 +27,7 @@ Sample body
   ]    
 }
 
-How to run it at docker :
+## How to run it at docker :
 
 First you need install Docker deamon, Docker compose and SET bash to run from terminal for Windows OS : 
 - https://docs.docker.com/docker-for-windows/ 
