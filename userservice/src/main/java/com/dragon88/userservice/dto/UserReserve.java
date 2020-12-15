@@ -2,15 +2,15 @@ package com.dragon88.userservice.dto;
 
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 public class UserReserve {
-    private int id;
+    private Integer id;
     private String name;
     private String email;
     private String bookedResponse;

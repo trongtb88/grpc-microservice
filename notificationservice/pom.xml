@@ -14,9 +14,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.dragon88</groupId>
+            <groupId>com.dragon88.dea</groupId>
             <artifactId>proto</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
