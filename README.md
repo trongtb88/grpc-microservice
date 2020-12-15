@@ -71,5 +71,7 @@ To call grpc server from client, you can use BloomGrpc
 - Copy & Paste localhost:6565 to Textbox address and run command
 
 To check kafka work or not, download Kafka tool and connect from localhost
+- https://www.kafkatool.com/
+- https://kafka.apache.org/quickstart
 
 
