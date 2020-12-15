@@ -20,8 +20,8 @@ Sample body
     "email" : "trongtb1988@gmail.com",
         "seats": [
     {
-      "row": 1,
-      "column": 1,
+      "rows": 1,
+      "cols": 1,
       "status": "empty"
     }
   ]    
